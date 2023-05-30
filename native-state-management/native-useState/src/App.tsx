@@ -1,3 +1,11 @@
+import {
+	Button,
+	Container,
+	HStack,
+	Input,
+	ListItem,
+	UnorderedList,
+} from '@chakra-ui/react';
 import { useState } from 'react';
 
 function NameList() {
@@ -11,17 +19,20 @@ function NameList() {
 	};
 	return (
 		<>
-			<ul>
+			<UnorderedList mb={'1rem'}>
 				{names.map((name) => (
-					<li key={name}>{name}</li>
+					<ListItem key={name} listStyleType={'none'} bg={'#ccc'} p={'0.5rem'}>
+						{name}
+					</ListItem>
 				))}
-			</ul>
-			<input
+			</UnorderedList>
+			<Input
 				type="text"
 				onChange={(event) => setName(event.target.value)}
 				value={name}
+				isRequired
 			/>
-			<button onClick={addName}>Add Name</button>
+			<Button onClick={addName}>Add Name</Button>
 		</>
 	);
 }
@@ -35,18 +46,20 @@ function Counter() {
 
 	return (
 		<>
-			<button onClick={addCount}>Count = {count}</button>
+			<Button onClick={addCount}>Count = {count}</Button>
 		</>
 	);
 }
 
 export const App = () => {
 	return (
-		<>
-			<Counter />
-			<Counter />
+		<Container h={'100vh'}>
+			<HStack p={'1rem'}>
+				<Counter />
+				<Counter />
+			</HStack>
 			<NameList />
-		</>
+		</Container>
 	);
 };
 
